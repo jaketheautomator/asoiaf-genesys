@@ -268,46 +268,26 @@ function normalizeWeapon(row) {
 // ============================================================
 
 function normalizeArmor(row) {
-    return {
+    const item = {
         id: row.id,
         name: row.name,
         category: "armor",
+        subtype: row.subtype?.trim().toLowerCase() || "personal",
 
-        defense:
-            csvNumber(
-                row.defense
-            ),
-
-        soak:
-            csvNumber(
-                row.soak
-            ),
-
-        encumbrance:
-            csvNullableNumber(
-                row.encumbrance
-            ),
-
-        hardPoints:
-            csvNumber(
-                row.hardPoints
-            ),
-
-        price:
-            csvNullableNumber(
-                row.price
-            ),
-
-        rarity:
-            csvNullableNumber(
-                row.rarity
-            ),
-
-        qualities:
-            parseQualities(
-                row.qualities
-            )
+        defense: csvNumber(row.defense),
+        soak: csvNumber(row.soak),
+        encumbrance: csvNullableNumber(row.encumbrance),
+        hardPoints: csvNumber(row.hardPoints),
+        price: csvNullableNumber(row.price),
+        rarity: csvNullableNumber(row.rarity),
+        qualities: parseQualities(row.qualities)
     };
+
+    if (hasCSVValue(row.effect)) {
+        item.description = row.effect;
+    }
+
+    return item;
 }
 
 

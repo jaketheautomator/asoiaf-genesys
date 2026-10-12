@@ -63,32 +63,7 @@ document.addEventListener(
 
 async function initializeEquipmentBrowser() {
     try {
-        async function initializeEquipmentBrowser() {
-    try {
         await loadEquipmentData();
-
-                bindEquipmentBrowserControls();
-                renderEquipmentBrowser();
-            } catch (error) {
-                console.error(
-                    "Could not initialize equipment browser:",
-                    error
-                );
-
-                const results =
-                    document.getElementById(
-                        "equipment-results"
-                    );
-
-                if (results) {
-                    results.innerHTML = `
-                        <p>
-                            Equipment data could not be loaded.
-                        </p>
-                    `;
-                }
-            }
-        }
 
         bindEquipmentBrowserControls();
         renderEquipmentBrowser();
@@ -100,7 +75,7 @@ async function initializeEquipmentBrowser() {
 
         const results =
             document.getElementById(
-                "equipment-results"
+                "equipment-browser-results"
             );
 
         if (results) {
@@ -574,6 +549,7 @@ function renderArmorTable(items) {
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Subtype</th>
                         <th>Defense</th>
                         <th>Soak</th>
                         <th>Enc</th>
@@ -603,6 +579,12 @@ function renderArmorRow(item) {
             <td class="equipment-browser-name">
                 ${escapeEquipmentHTML(
                     item.name
+                )}
+            </td>
+
+            <td>
+                ${escapeEquipmentHTML(
+                    item.subtype || "—"
                 )}
             </td>
 
@@ -661,6 +643,7 @@ function renderGearTable(items) {
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Subtype</th>
                         <th>Enc</th>
                         <th>Price</th>
                         <th>Rarity</th>
@@ -687,6 +670,12 @@ function renderGearRow(item) {
             <td class="equipment-browser-name">
                 ${escapeEquipmentHTML(
                     item.name
+                )}
+            </td>
+
+            <td>
+                ${escapeEquipmentHTML(
+                    item.subtype || "—"
                 )}
             </td>
 
