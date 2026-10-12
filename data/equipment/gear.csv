@@ -6,24 +6,24 @@ small-tent,Small Tent,general,3,30,2,A simple canvas shelter suitable for one or
 large-tent,Large Tent,general,5,75,4,A roomy canvas pavilion that shelters a small group and its belongings.
 waterskin,Waterskin,general,0.5,5,0,A stitched leather vessel for carrying drinking water or other liquids. Encumbrance listed assumes the waterskin is full.
 rope,Rope,general,1,5,1,"A coil of stout hemp rope useful for hauling, climbing, and securing loads."
-grappling-hook,Grappling Hook,general,1,10,3,"An iron hook with several prongs, made to catch on ledges, walls, or railings."
-flint-and-steel,Flint and Steel,general,0,10,1,A striker and sharp flint used with tinder to kindle a fire.
+grappling-hook,Grappling Hook,tool,1,10,3,"An iron hook with several prongs, made to catch on ledges, walls, or railings."
+flint-and-steel,Flint and Steel,tool,0,10,1,A striker and sharp flint used with tinder to kindle a fire.
 torches,Torches (3),general,1,3,0,Pitch-soaked wooden brands that provide a portable but short-lived flame.
 lantern,Lantern,general,1,50,4,A hooded metal lamp that protects its flame from wind and directs its light.
 lamp-oil,Lamp Oil,general,0,2,5,A small supply of combustible oil for keeping lamps and lanterns alight.
 rations,"Rations, One Day",general,0,2,0,"Dried meat, hard bread, and other preserved food sufficient for one day of travel."
-cooking-kit,Cooking Kit,general,2,15,1,"A portable assortment of pots, utensils, and implements for preparing meals over a fire."
+cooking-kit,Cooking Kit,tool,2,15,1,"A portable assortment of pots, utensils, and implements for preparing meals over a fire."
 winter-clothing,Winter Clothing,general,1,100,3,"Thick wool, fur, and layered garments intended for travel through bitter weather. When worn, removes up to 2 Setback dice from Survival or Resilience checks caused by cold weather."
-apothecary-kit,Apothecary Kit,general,2,150,6,"A case of herbs, salves, powders, and small instruments used to prepare remedies."
-healers-kit,Healer's Kit,general,2,100,3,"Bandages, needles, splints, and basic implements for treating wounds in the field."
-thieves-tools,Thieves' Tools,general,1,75,5,"Fine picks, probes, and tension tools for working delicate locks and mechanisms."
-climbing-gear,Climbing Gear,general,1,20,3,"Ropes, straps, hooks, and other equipment for negotiating steep or sheer surfaces."
-hunting-fishing-kit,Hunting & Fishing Kit,general,2,40,2,"Snares, lines, hooks, and dressing tools for gathering food from the wild."
-navigation-instruments,Navigation Instruments,general,1,100,6,"A collection of charts, measuring tools, and directional aids for finding a route."
-writing-kit,Writing Kit,general,1,50,4,"Quills, ink, parchment, and small accessories for correspondence and recordkeeping."
-crowbar,Crowbar,general,1,10,2,"A heavy iron lever for prying open doors, crates, and stubborn fittings."
-shovel,Shovel,general,2,10,1,An iron-bladed digging tool with a sturdy wooden handle.
-hammer-pitons,Hammer & Pitons,general,1,10,3,A small hammer and iron spikes for securing ropes to rock or masonry.
+apothecary-kit,Apothecary Kit,tool,2,150,6,"A case of herbs, salves, powders, and small instruments used to prepare remedies."
+healers-kit,Healer's Kit,tool,2,100,3,"Bandages, needles, splints, and basic implements for treating wounds in the field."
+thieves-tools,Thieves' Tools,tool,1,75,5,"Fine picks, probes, and tension tools for working delicate locks and mechanisms."
+climbing-gear,Climbing Gear,tool,1,20,3,"Ropes, straps, hooks, and other equipment for negotiating steep or sheer surfaces."
+hunting-fishing-kit,Hunting & Fishing Kit,tool,2,40,2,"Snares, lines, hooks, and dressing tools for gathering food from the wild."
+navigation-instruments,Navigation Instruments,tool,1,100,6,"A collection of charts, measuring tools, and directional aids for finding a route."
+writing-kit,Writing Kit,tool,1,50,4,"Quills, ink, parchment, and small accessories for correspondence and recordkeeping."
+crowbar,Crowbar,tool,1,10,2,"A heavy iron lever for prying open doors, crates, and stubborn fittings."
+shovel,Shovel,tool,2,10,1,An iron-bladed digging tool with a sturdy wooden handle.
+hammer-pitons,Hammer & Pitons,tool,1,10,3,A small hammer and iron spikes for securing ropes to rock or masonry.
 basic-tack,Bridle & Basic Tack,tack,1,20,1,"A bridle, reins, and simple fittings for leading and controlling a mount."
 riding-saddle,Riding Saddle,tack,3,50,3,A fitted leather seat that makes long journeys on horseback more secure and comfortable.
 war-saddle,War Saddle,tack,4,150,5,"A high-pommeled, reinforced saddle built to keep a rider steady in the violence of combat."
