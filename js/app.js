@@ -1388,33 +1388,12 @@ function renderTalents() {
 
 
     // --------------------------------------------------------
-    // Pyramid summary
+    // Talent pyramid
     // --------------------------------------------------------
 
-    const pyramid =
-        document.createElement("div");
-
-    pyramid.className = "talent-pyramid-summary";
-
-    for (let tier = 1; tier <= 5; tier++) {
-
-        const count =
-            getTalentCountByTier(tier);
-
-        const tierSummary =
-            document.createElement("div");
-
-        tierSummary.className =
-            "talent-pyramid-tier";
-
-        tierSummary.textContent =
-            `Tier ${tier}: ${count}`;
-
-        pyramid.appendChild(tierSummary);
-    }
-
-    section.appendChild(pyramid);
-
+    section.appendChild(
+        renderTalentPyramid()
+    );
 
     // --------------------------------------------------------
     // Talent tiers
@@ -1431,25 +1410,169 @@ function renderTalents() {
     content.appendChild(section);
 }
 
+function renderTalentPyramid() {
+    const pyramid =
+        document.createElement("div");
+
+    pyramid.className =
+        "talent-pyramid-summary";
+
+
+    for (let tier = 1; tier <= 5; tier++) {
+
+        const column =
+            document.createElement("div");
+
+        column.className =
+            "talent-pyramid-tier";
+
+
+        const heading =
+            document.createElement("h3");
+
+        heading.textContent =
+            `Tier ${tier}`;
+
+        column.appendChild(heading);
+
+
+        const purchased =
+            getPurchasedTalentsAtTier(
+                tier
+            );
+
+
+        for (const entry of purchased) {
+
+            const slot =
+                document.createElement("div");
+
+            slot.className =
+                "talent-pyramid-slot talent-pyramid-slot-filled";
+
+
+            if (
+                entry.talent.ranked &&
+                entry.rank > 1
+            ) {
+                slot.textContent =
+                    `${entry.talent.name} ` +
+                    `(Rank ${entry.rank})`;
+            } else {
+                slot.textContent =
+                    entry.talent.name;
+            }
+
+
+            column.appendChild(slot);
+        }
+
+
+        /*
+         * Show one blank slot if the pyramid permits
+         * another talent to be purchased at this tier.
+         */
+        if (
+            canAddTalentAtTier(tier)
+        ) {
+            const emptySlot =
+                document.createElement("div");
+
+            emptySlot.className =
+                "talent-pyramid-slot talent-pyramid-slot-empty";
+
+            column.appendChild(
+                emptySlot
+            );
+        }
+
+
+        pyramid.appendChild(column);
+    }
+
+
+    return pyramid;
+}
+
+
+function getPurchasedTalentsAtTier(
+    tier
+) {
+    const purchased = [];
+
+
+    for (const talent of GAME_DATA.talents) {
+
+        const ranks =
+            getTalentRank(
+                talent.id
+            );
+
+
+        for (
+            let rank = 1;
+            rank <= ranks;
+            rank++
+        ) {
+            if (
+                getTalentEffectiveTier(
+                    talent.id,
+                    rank
+                ) === tier
+            ) {
+                purchased.push({
+                    talent,
+                    rank
+                });
+            }
+        }
+    }
+
+
+    return purchased;
+}
 
 function renderTalentTier(tier) {
     const tierSection =
-        document.createElement("section");
+        document.createElement("details");
 
     tierSection.className =
         "talent-tier";
 
+    tierSection.open = true;
 
-    const heading =
-        document.createElement("h3");
+
+    const summary =
+        document.createElement("summary");
+
+    summary.className =
+        "talent-tier-summary";
+
+
+    const title =
+        document.createElement("span");
 
     const occupied =
         getTalentCountByTier(tier);
 
-    heading.textContent =
-        `Tier ${tier} — ${occupied} Purchased`;
+    title.textContent =
+        `Tier ${tier}`;
 
-    tierSection.appendChild(heading);
+
+    const count =
+        document.createElement("span");
+
+    count.className =
+        "talent-tier-count";
+
+    count.textContent =
+        `${occupied} Purchased`;
+
+
+    summary.appendChild(title);
+    summary.appendChild(count);
+
+    tierSection.appendChild(summary);
 
 
     /*
@@ -1457,9 +1580,6 @@ function renderTalentTier(tier) {
      *
      * 1. Its next purchase would occupy this tier, OR
      * 2. It already has a purchased rank occupying this tier.
-     *
-     * This matters for ranked talents. Grit, for example,
-     * begins at Tier 1 but Grit II occupies Tier 2.
      */
     const relevantTalents =
         GAME_DATA.talents.filter(
@@ -1618,7 +1738,7 @@ function renderTalentCard(
 
         if (talent.ranked) {
             purchased.textContent =
-                `Purchased Rank ${purchasedRank}`;
+                "";
         } else {
             purchased.textContent =
                 "";
@@ -1643,7 +1763,7 @@ function renderTalentCard(
             document.createElement("span");
 
         ranked.textContent =
-            "Ranked";
+            "; Ranked";
 
         metadata.appendChild(ranked);
     }
@@ -3006,11 +3126,11 @@ function renderEquipmentCategory(
     categoryId,
     heading
 ) {
-    const items =
-        GAME_DATA.equipment.filter(
-            item =>
-                item.category === categoryId
-        );
+    const items = GAME_DATA.equipment.filter(
+        item =>
+            item.category === categoryId &&
+            item.subtype !== "service"
+    );
 
     if (items.length === 0) return;
 

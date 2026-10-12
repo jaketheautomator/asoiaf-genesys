@@ -18,10 +18,8 @@ const EQUIPMENT_DATA_FILES = {
     armor: "data/equipment/armor.csv",
     gear: "data/equipment/gear.csv",
     mount: "data/equipment/mounts.csv",
-    tack: "data/equipment/tack.csv",
-    barding: "data/equipment/barding.csv",
     vehicle: "data/equipment/vehicles.csv",
-    attachment: "data/equipment/attachments.csv"
+    attachment: "data/equipment/attachments.csv",
 };
 
 
@@ -322,6 +320,7 @@ function normalizeGear(row) {
         id: row.id,
         name: row.name,
         category: "gear",
+        subtype: row.subtype,
 
         encumbrance:
             csvNullableNumber(

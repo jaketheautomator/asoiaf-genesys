@@ -775,38 +775,118 @@ button:disabled {
 .talent-pyramid-summary {
     display: grid;
     grid-template-columns:
-        repeat(5, minmax(80px, 1fr));
+        repeat(5, minmax(110px, 1fr));
 
-    gap: 1px;
+    gap: 12px;
 
-    margin-bottom: 18px;
-
-    border: 1px solid var(--border);
-    background: var(--border);
+    margin-bottom: 24px;
 }
 
-.talent-pyramid-summary > * {
-    margin: 0;
-    padding: 8px 10px;
+.talent-pyramid-tier {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    min-width: 0;
+}
+
+.talent-pyramid-tier h3 {
+    margin: 0 0 2px;
+    padding-bottom: 5px;
 
     text-align: center;
 
-    background: var(--panel-alt);
+    border-bottom: 2px solid var(--accent);
+}
+
+.talent-pyramid-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 36px;
+    min-width: 0;
+
+    padding: 7px 8px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    font-size: clamp(0.72rem, 1vw, 0.95rem);
+    line-height: 1.15;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.talent-pyramid-slot-filled {
+    background: #b8ffba;
+
+    font-weight: bold;
+}
+
+.talent-pyramid-slot-empty {
+    background: white;
+
+    border-style: dashed;
 }
 
 
 /* ---------------------------------------------------------------
-   Talent tiers
+   Collapsible talent tiers
    --------------------------------------------------------------- */
 
 .talent-tier {
-    margin-bottom: 24px;
+    margin-bottom: 14px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    background: var(--panel-bg);
+
+    overflow: hidden;
 }
 
-.talent-tier > h3 {
-    padding-bottom: 5px;
+.talent-tier-summary {
+    display: flex;
 
-    border-bottom: 2px solid var(--accent);
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 10px 12px;
+
+    cursor: pointer;
+
+    background: var(--panel-alt);
+
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    user-select: none;
+}
+
+.talent-tier-summary:hover {
+    background: var(--panel-bg);
+}
+
+.talent-tier[open] > .talent-tier-summary {
+    border-bottom: 1px solid var(--accent);
+}
+
+.talent-tier-summary::marker {
+    color: var(--accent);
+}
+
+.talent-tier-count {
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+    font-weight: normal;
 }
 
 
@@ -820,6 +900,8 @@ button:disabled {
         repeat(3, minmax(0, 1fr));
 
     gap: 12px;
+
+    padding: 12px;
 
     align-items: stretch;
 }
@@ -918,9 +1000,13 @@ button:disabled {
     min-width: 34px;
 }
 
+.talent-card.talent-card-purchased {
+    background: #b8ffba;
+}
+
 
 /* ---------------------------------------------------------------
-   Responsive layout
+   Responsive talent layout
    --------------------------------------------------------------- */
 
 @media (max-width: 1000px) {
@@ -930,19 +1016,23 @@ button:disabled {
     }
 }
 
+@media (max-width: 800px) {
+    .talent-pyramid-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 650px) {
     .talent-list {
         grid-template-columns: 1fr;
     }
-
-    .talent-pyramid-summary {
-        grid-template-columns:
-            repeat(5, minmax(60px, 1fr));
-    }
 }
 
-.talent-card.talent-card-purchased {
-    background: #b8ffba;
+@media (max-width: 500px) {
+    .talent-pyramid-summary {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ================================================================
@@ -1364,10 +1454,6 @@ button:disabled {
         grid-template-columns: 1fr;
     }
 
-    .talent-pyramid-summary {
-        grid-template-columns:
-            repeat(5, 1fr);
-    }
 
     .equipment-step {
         grid-template-columns: 1fr;
@@ -1448,14 +1534,6 @@ button:disabled {
         display: none;
     }
 
-    .talent-pyramid-summary {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .talent-card {
-        grid-template-columns: 1fr;
-    }
 
     .talent-controls {
         justify-content: flex-start;
@@ -2081,7 +2159,8 @@ button:disabled {
     }
 
 }
-# REPORT
+
+/* REPORT */
 .summary-report-control {
     margin-top: 16px;
     padding-top: 12px;
