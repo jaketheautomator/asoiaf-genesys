@@ -41,14 +41,6 @@ const equipmentBrowserCategories = [
         name: "Mounts"
     },
     {
-        id: "tack",
-        name: "Tack"
-    },
-    {
-        id: "barding",
-        name: "Barding"
-    },
-    {
         id: "vehicle",
         name: "Vehicles"
     },
@@ -453,12 +445,6 @@ function renderEquipmentCategoryContents(
 
         case "mount":
             return renderMountList(items);
-
-        case "tack":
-            return renderTackTable(items);
-
-        case "barding":
-            return renderBardingTable(items);
 
         case "vehicle":
             return renderVehicleList(items);

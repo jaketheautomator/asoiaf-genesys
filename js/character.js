@@ -1657,9 +1657,14 @@ function getArmorDefense() {
 // ============================================================
 
 function getBaseEncumbranceThreshold() {
+    const hasActiveBackpack = character.equipment.some(
+        entry =>
+            entry.itemId === "backpack" &&
+            !entry.stowed
+    );
     return (
-        5 +
-        character.characteristics.brawn
+        5 + character.characteristics.brawn +
+        (hasActiveBackpack ? 4 : 0)
     );
 }
 
